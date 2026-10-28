@@ -1,0 +1,7 @@
+# Competition data and raw run outputs: covered by the competition license, not ours to redistribute
+data/
+results/
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

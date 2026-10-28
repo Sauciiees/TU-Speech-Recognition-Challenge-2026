@@ -1,0 +1,9 @@
+exp_id,date,model,training,data,augmentation,decoding,postprocess,dev_wer,dev_wer_no_punct,dev_cer,kaggle_public,notes
+E00,2026-10-28,Pathumma Fastcon,zero-shot,-,-,-,-,,,,0.25,host leaderboard entry
+E00,2026-10-28,Typhoon Whisper Large V3,zero-shot,-,-,-,-,,,,0.26,host leaderboard entry
+E00,2026-10-28,Whisper Large V3,zero-shot,-,-,-,-,,,,0.27,host leaderboard entry
+E00,2026-10-28,Typhoon Whisper Turbo,zero-shot,-,-,-,-,,,,0.31,host leaderboard entry
+E00,2026-10-28,Qwen3-ASR 0.6B,zero-shot,-,-,-,-,,,,0.32,host leaderboard entry
+E00,2026-10-28,Typhoon ASR Realtime,zero-shot,-,-,-,-,,,,0.37,host leaderboard entry
+E02,2026-10-28,(perfect transcript),-,-,-,-,-,0.0,0.0,0.0,,scorer sanity check
+E02,2026-10-28,(perfect transcript without spaces),-,-,-,-,-,0.0131,0.013,0.0,,spacing costs only 1.3%
