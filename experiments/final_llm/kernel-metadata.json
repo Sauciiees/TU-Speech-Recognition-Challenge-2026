@@ -1,0 +1,13 @@
+{
+  "id": "sauciiees/dsi443-final-pathumma-llm",
+  "title": "dsi443-final-pathumma-llm",
+  "code_file": "final_llm.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "competition_sources": ["dsi-443-tu-speech-recognition-challenge-2026"],
+  "dataset_sources": [],
+  "kernel_sources": []
+}

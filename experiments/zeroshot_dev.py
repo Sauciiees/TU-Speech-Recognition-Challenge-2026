@@ -30,6 +30,8 @@ MODELS = {
     "typhoon-asr-realtime": ("typhoon-ai/typhoon-asr-realtime", "nemo"),
     "qwen3-asr-0.6b": ("Qwen/Qwen3-ASR-0.6B-hf", "qwen"),
 }
+# Whisper large with beam 5 runs out of T4 memory at batch 16.
+BATCH_OVERRIDE = {"typhoon-whisper-large-v3": 4, "whisper-large-v3": 4}
 # Families are installed in this order: NeMo pins its own transformers, so the
 # transformers upgrade for Qwen comes last.
 FAMILY_ORDER = ["whisper", "nemo", "qwen"]
@@ -54,25 +56,28 @@ def find_data_dir(given):
     return os.path.dirname(hits[0])
 
 
-def prepare_dev(data_dir, wav_dir, limit):
-    """Decode dev MP3s once to 16 kHz mono WAV; every model reads the same files."""
+def prepare_audio(data_dir, wav_dir, limit):
+    """Decode dev and test MP3s once to 16 kHz mono WAV; every model reads the same files.
+    Test rows have no reference; they only produce submission predictions."""
     import librosa
     import pandas as pd
     import soundfile as sf
 
-    dev = pd.read_csv(os.path.join(data_dir, "dev.csv"))
-    if limit:
-        dev = dev.head(limit)
     index = {os.path.basename(p): p for p in glob.glob(os.path.join(data_dir, "**", "*.mp3"), recursive=True)}
     os.makedirs(wav_dir, exist_ok=True)
     rows = []
-    for audio, sentence in zip(dev["audio"], dev["sentence"]):
-        src = os.path.join(data_dir, audio)
-        src = src if os.path.exists(src) else index[os.path.basename(audio)]
-        wav = os.path.join(wav_dir, os.path.splitext(os.path.basename(audio))[0] + ".wav")
-        y, _ = librosa.load(src, sr=SR, mono=True)
-        sf.write(wav, y, SR)
-        rows.append({"audio": audio, "ref": sentence, "wav": wav, "seconds": len(y) / SR})
+    for split in ("dev", "test"):
+        df = pd.read_csv(os.path.join(data_dir, f"{split}.csv"))
+        if limit:
+            df = df.head(limit)
+        refs = df["sentence"] if "sentence" in df else [""] * len(df)
+        for audio, sentence in zip(df["audio"], refs):
+            src = os.path.join(data_dir, audio)
+            src = src if os.path.exists(src) else index[os.path.basename(audio)]
+            wav = os.path.join(wav_dir, os.path.splitext(os.path.basename(audio))[0] + ".wav")
+            y, _ = librosa.load(src, sr=SR, mono=True)
+            sf.write(wav, y, SR)
+            rows.append({"split": split, "audio": audio, "ref": sentence, "wav": wav, "seconds": len(y) / SR})
     return rows
 
 
@@ -123,12 +128,17 @@ def worker(name, rows_path, out_dir, batch_size):
     hf_id, family = MODELS[name]
     rows = json.load(open(rows_path, encoding="utf-8"))
     transcribe = {"whisper": transcribe_whisper, "nemo": transcribe_nemo, "qwen": transcribe_qwen}[family]
-    hyps = transcribe(hf_id, [r["wav"] for r in rows], batch_size)
-    pd.DataFrame({
+    hyps = transcribe(hf_id, [r["wav"] for r in rows], BATCH_OVERRIDE.get(name, batch_size))
+    df = pd.DataFrame({
+        "split": [r["split"] for r in rows],
         "audio": [r["audio"] for r in rows],
         "ref": [r["ref"] for r in rows],
         "hyp": [str(h).strip() for h in hyps],
-    }).to_csv(os.path.join(out_dir, f"pred_{name}.csv"), index=False, encoding="utf-8")
+    })
+    dev, test = df[df["split"] == "dev"], df[df["split"] == "test"]
+    dev[["audio", "ref", "hyp"]].to_csv(os.path.join(out_dir, f"pred_{name}.csv"), index=False, encoding="utf-8")
+    # Raw test transcripts; newmm segmentation for the submission happens locally.
+    test[["audio", "hyp"]].to_csv(os.path.join(out_dir, f"test_{name}.csv"), index=False, encoding="utf-8")
 
 
 def main():
@@ -158,10 +168,12 @@ def main():
 
     os.makedirs(args.out_dir, exist_ok=True)
     scratch = tempfile.mkdtemp()  # outside out-dir so the WAVs aren't saved as outputs
-    rows = prepare_dev(find_data_dir(args.data_dir), os.path.join(scratch, "dev_wav"), args.limit)
-    rows_path = os.path.join(scratch, "dev_rows.json")
+    rows = prepare_audio(find_data_dir(args.data_dir), os.path.join(scratch, "wav"), args.limit)
+    rows_path = os.path.join(scratch, "rows.json")
     json.dump(rows, open(rows_path, "w", encoding="utf-8"), ensure_ascii=False)
-    print(f"dev clips: {len(rows)}, audio {sum(r['seconds'] for r in rows) / 60:.1f} min", flush=True)
+    for split in ("dev", "test"):
+        part = [r for r in rows if r["split"] == split]
+        print(f"{split} clips: {len(part)}, audio {sum(r['seconds'] for r in part) / 60:.1f} min", flush=True)
 
     wanted = args.models.split(",") if args.models else list(MODELS)
     timings = {}

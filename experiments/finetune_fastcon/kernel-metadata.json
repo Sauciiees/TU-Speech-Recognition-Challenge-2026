@@ -1,0 +1,13 @@
+{
+  "id": "sauciiees/dsi443-finetune-fastcon",
+  "title": "dsi443-finetune-fastcon",
+  "code_file": "finetune_fastcon.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "competition_sources": ["dsi-443-tu-speech-recognition-challenge-2026"],
+  "dataset_sources": [],
+  "kernel_sources": []
+}

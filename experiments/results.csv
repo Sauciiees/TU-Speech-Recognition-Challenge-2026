@@ -7,3 +7,97 @@ E00,2026-10-28,Qwen3-ASR 0.6B,zero-shot,-,-,-,-,,,,0.32,host leaderboard entry
 E00,2026-10-28,Typhoon ASR Realtime,zero-shot,-,-,-,-,,,,0.37,host leaderboard entry
 E02,2026-10-28,(perfect transcript),-,-,-,-,-,0.0,0.0,0.0,,scorer sanity check
 E02,2026-10-28,(perfect transcript without spaces),-,-,-,-,-,0.0131,0.013,0.0,,spacing costs only 1.3%
+E03,2026-10-28,Pathumma Fastcon,zero-shot,-,-,NeMo default (greedy RNNT),-,0.1110,0.1104,0.0491,,v3 run
+E03,2026-10-28,Qwen3-ASR 0.6B,zero-shot,-,-,"greedy, language=Thai",-,0.1925,0.1863,0.0769,,v3 run
+E03,2026-10-28,Typhoon Whisper Turbo,zero-shot,-,-,"beam 5, language=th",-,0.1951,0.1943,0.0851,,v3 run; numbers spelled out
+E03,2026-10-28,Typhoon ASR Realtime,zero-shot,-,-,NeMo default,-,0.2699,0.2690,0.1048,,v3 run
+E03,2026-10-28,Typhoon Whisper Large V3,zero-shot,-,-,"beam 5, batch 4",-,0.1507,0.1498,0.0720,,v4 run; numbers spelled out
+E03,2026-10-28,Whisper Large V3,zero-shot,-,-,"beam 5, batch 4",-,0.2198,0.2188,0.0785,,v4 run
+E04,2026-10-28,Pathumma Fastcon,zero-shot (epoch 0),train,SpecAugment,NeMo default,-,0.1110,0.1104,0.0491,,"A_train; lr 1e-4, batch 8x2"
+E04,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 2",train,SpecAugment,NeMo default,-,0.1229,0.1219,0.0567,,"A_train; lr 1e-4, batch 8x2"
+E04,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 4",train,SpecAugment,NeMo default,-,0.1300,0.1290,0.0593,,"A_train; lr 1e-4, batch 8x2"
+E04,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 6",train,SpecAugment,NeMo default,-,0.1333,0.1324,0.0605,,"A_train; lr 1e-4, batch 8x2"
+E04,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 8",train,SpecAugment,NeMo default,-,0.1326,0.1317,0.0601,,"A_train; lr 1e-4, batch 8x2"
+E04,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 10",train,SpecAugment,NeMo default,-,0.1319,0.1309,0.0603,,"A_train; lr 1e-4, batch 8x2"
+E04,2026-10-28,Pathumma Fastcon,full fine-tune,train + dev folds 1-4,SpecAugment,-,-,,,,,B_train_dev80 out of GPU memory at batch 8; rerun in E05
+S01,2026-10-28,Pathumma Fastcon,zero-shot,-,-,NeMo default,newmm segmentation,0.1110,0.1104,0.0491,0.26,first Kaggle submission
+S01,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 10",train,SpecAugment,NeMo default,newmm segmentation,0.1319,0.1309,0.0603,0.29,second Kaggle submission
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 2",train,SpecAugment,NeMo default,-,0.1181,,,,D_lora_train; all of dev; lr 3e-4
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 4",train,SpecAugment,NeMo default,-,0.1227,,,,D_lora_train; all of dev; lr 3e-4
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 6",train,SpecAugment,NeMo default,-,0.1259,,,,D_lora_train; all of dev; lr 3e-4
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 8",train,SpecAugment,NeMo default,-,0.1218,,,,D_lora_train; all of dev; lr 3e-4
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 10",train,SpecAugment,NeMo default,-,0.1273,,,,D_lora_train; all of dev; lr 3e-4
+E06,2026-10-28,Pathumma Fastcon,zero-shot (fold 0 only),-,-,NeMo default,-,0.1053,,0.0433,,dev fold 0 reference for B/C/E
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 2",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1132,,0.0494,,E_lora_train_dev80; dev fold 0 only (50 clips)
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 4",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1061,,0.0462,,E_lora_train_dev80; dev fold 0 only (50 clips)
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 6",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1029,,0.0441,,E_lora_train_dev80; dev fold 0 only (50 clips)
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 8",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1045,,0.0465,,E_lora_train_dev80; dev fold 0 only (50 clips)
+E06,2026-10-28,Pathumma Fastcon,"LoRA r16, epoch 10",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1006,,0.0447,,E_lora_train_dev80; dev fold 0 only (50 clips)
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 2",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1116,,0.0491,,B_train_dev80; dev fold 0; lr 1e-4
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 4",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1045,,0.0414,,B_train_dev80; dev fold 0; lr 1e-4
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 6",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1037,,0.0430,,B_train_dev80; dev fold 0; lr 1e-4
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 8",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1013,,0.0402,,B_train_dev80; dev fold 0; lr 1e-4
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 10",train + dev folds 1-4,SpecAugment,NeMo default,-,0.0998,,0.0397,,B_train_dev80; dev fold 0; lr 1e-4
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 2",dev folds 1-4,SpecAugment,NeMo default,-,0.1061,,0.0445,,C_dev80; dev fold 0; lr 3e-5
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 4",dev folds 1-4,SpecAugment,NeMo default,-,0.1037,,0.0447,,C_dev80; dev fold 0; lr 3e-5
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 6",dev folds 1-4,SpecAugment,NeMo default,-,0.0982,,0.0421,,C_dev80; dev fold 0; lr 3e-5
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 8",dev folds 1-4,SpecAugment,NeMo default,-,0.0990,,0.0419,,C_dev80; dev fold 0; lr 3e-5
+E05,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 10",dev folds 1-4,SpecAugment,NeMo default,-,0.0990,,0.0419,,C_dev80; dev fold 0; lr 3e-5
+S02,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 10",train + dev folds 1-4,SpecAugment,NeMo default,newmm segmentation,0.0998,,0.0397,0.24,B; fold 0 scores; best on Kaggle so far
+S02,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 6",dev folds 1-4,SpecAugment,NeMo default,newmm segmentation,0.0982,,0.0421,0.25,C; fold 0 scores
+E07,2026-10-28,Typhoon Whisper Turbo,zero-shot (greedy),train,SpecAugment p0.05,greedy,-,0.2015,,0.0859,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Turbo,"LoRA r32, epoch 1",train,SpecAugment p0.05,greedy,-,0.2065,,0.0841,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Turbo,"LoRA r32, epoch 2",train,SpecAugment p0.05,greedy,-,0.2054,,,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Turbo,"LoRA r32, epoch 3",train,SpecAugment p0.05,greedy,-,0.2109,,0.0842,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Turbo,"zero-shot (greedy), fold 0",-,-,greedy,-,0.2106,,0.0750,,dev fold 0 reference
+E07,2026-10-28,Typhoon Whisper Turbo,"LoRA r32, epoch 1",train + dev folds 1-4,SpecAugment p0.05,greedy,-,0.1781,,0.0533,,B_train_dev80; dev fold 0
+E07,2026-10-28,Typhoon Whisper Turbo,"LoRA r32, epoch 2",train + dev folds 1-4,SpecAugment p0.05,greedy,-,0.1615,,0.0505,,B_train_dev80; dev fold 0
+E07,2026-10-28,Typhoon Whisper Turbo,"LoRA r32, epoch 3",train + dev folds 1-4,SpecAugment p0.05,greedy,-,0.1631,,0.0493,,B_train_dev80; dev fold 0
+S03,2026-10-28,Typhoon Whisper Turbo,"LoRA r32, epoch 2",train + dev folds 1-4,SpecAugment p0.05,greedy,newmm segmentation,0.1615,,0.0505,0.29,Kaggle; host zero-shot Turbo 0.31
+E07,2026-10-28,Typhoon Whisper Large V3,zero-shot (greedy),train,SpecAugment p0.05,greedy,-,0.1518,,0.0726,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Large V3,"LoRA r32, epoch 1",train,SpecAugment p0.05,greedy,-,0.1545,,0.0718,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Large V3,"LoRA r32, epoch 2",train,SpecAugment p0.05,greedy,-,0.1511,,0.0707,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Large V3,"LoRA r32, epoch 3",train,SpecAugment p0.05,greedy,-,0.1527,,0.0730,,A_train; all of dev
+E07,2026-10-28,Typhoon Whisper Large V3,"zero-shot (greedy), fold 0",-,-,greedy,-,0.1354,,0.0571,,dev fold 0 reference
+E07,2026-10-28,Typhoon Whisper Large V3,"LoRA r32, epoch 1",train + dev folds 1-4,SpecAugment p0.05,greedy,-,0.1338,,0.0516,,B_train_dev80; dev fold 0
+E07,2026-10-28,Typhoon Whisper Large V3,"LoRA r32, epoch 2",train + dev folds 1-4,SpecAugment p0.05,greedy,-,0.1298,,0.0474,,B_train_dev80; dev fold 0
+E07,2026-10-28,Typhoon Whisper Large V3,"LoRA r32, epoch 3",train + dev folds 1-4,SpecAugment p0.05,greedy,-,0.1235,,0.0451,,B_train_dev80; dev fold 0
+S04,2026-10-28,Typhoon Whisper Large V3,"LoRA r32, epoch 3",train + dev folds 1-4,SpecAugment p0.05,greedy,newmm segmentation,0.1235,,0.0451,0.26,Kaggle; host zero-shot Large 0.26
+S05,2026-10-28,ROVER: Pathumma B + C + Typhoon Large,"word voting, equal",(inputs trained on train + dev folds 1-4),-,-,newmm segmentation,0.0895,,0.0390,0.24,E11; dev fold 0
+S05,2026-10-28,ROVER: 5 fine-tuned systems,"word voting, equal",(inputs trained on train + dev folds 1-4),-,-,newmm segmentation,0.0911,,0.0379,0.24,E11; dev fold 0
+S06,2026-10-28,Pathumma Fastcon,"full fine-tune, epoch 10",train + all of dev,SpecAugment,NeMo default,newmm segmentation,,,,0.22,E10 F; best so far
+S06,2026-10-28,ROVER: F + Pathumma C + Typhoon Large,"word voting, equal",mixed,-,-,newmm segmentation,,,,0.23,E10
+E14,2026-10-28,Pathumma Fastcon,"full fine-tune, 14-epoch schedule, epoch 6",train + dev folds 1-4,SpecAugment,NeMo default,-,0.1021,,0.0399,,B_long; dev fold 0
+E14,2026-10-28,Pathumma Fastcon,"full fine-tune, 14-epoch schedule, epoch 8",train + dev folds 1-4,SpecAugment,NeMo default,-,0.0998,,0.0377,,B_long; dev fold 0
+E14,2026-10-28,Pathumma Fastcon,"full fine-tune, 14-epoch schedule, epoch 10",train + dev folds 1-4,SpecAugment,NeMo default,-,0.0942,,0.0345,,B_long; dev fold 0
+E14,2026-10-28,Pathumma Fastcon,"full fine-tune, 14-epoch schedule, epoch 12",train + dev folds 1-4,SpecAugment,NeMo default,-,0.0903,,0.0337,,B_long; dev fold 0
+E14,2026-10-28,Pathumma Fastcon,"full fine-tune, 14-epoch schedule, epoch 14",train + dev folds 1-4,SpecAugment,NeMo default,-,0.0911,,0.0348,,B_long; dev fold 0
+S07,2026-10-29,Pathumma Fastcon,"full fine-tune, avg epochs 6-8-10, beam 4",train + all dev x3,SpecAugment,beam 4,newmm segmentation,0.0800,,0.0331,0.19,E15 H_final; best
+S07,2026-10-29,Pathumma Fastcon,"full fine-tune, 14-epoch schedule, epoch 12",train + all dev,SpecAugment,NeMo default,newmm segmentation,0.0903,,0.0337,0.20,E14 F
+E16,2026-10-29,Pathumma Fastcon,"full fine-tune, seed 11, avg epochs 6-8-10",train + dev folds 1-4 x3,SpecAugment,NeMo default,-,0.0879,,0.0334,,S_val_s11; dev fold 0
+E16,2026-10-29,Pathumma Fastcon,"full fine-tune, seed 12, avg epochs 6-8-10",train + dev folds 1-4 x3,SpecAugment,NeMo default,-,0.0934,,0.0345,,S_val_s12; dev fold 0
+E16,2026-10-29,Pathumma Fastcon,"full fine-tune, seed 13, avg epochs 6-8-10",train + dev folds 1-4 x3,SpecAugment,NeMo default,-,0.0863,,0.0328,,S_val_s13; dev fold 0
+E16,2026-10-29,Pathumma Fastcon,"model soup of 3 seeds",train + dev folds 1-4 x3,SpecAugment,NeMo default,-,0.0895,,0.0348,,S_val_soup3; dev fold 0
+E16,2026-10-29,Pathumma Fastcon,"model soup of 3 seeds",train + dev folds 1-4 x3,SpecAugment,beam 4,-,0.0823,,0.0330,,S_val_soup3_beam; dev fold 0; not submitted
+E17,2026-10-29,Pathumma Fastcon + Typhoon2.1 4B,"H_val avg6-8-10 beam + LLM old prompt, tok filter",train + dev folds 1-4 x3,SpecAugment,beam 4,LLM correction,0.0808,,,,hval; dev fold 0
+E17,2026-10-29,Pathumma Fastcon + Typhoon2.1 4B,"H_val avg6-8-10 beam + LLM new prompt, tok filter",train + dev folds 1-4 x3,SpecAugment,beam 4,LLM correction,0.0839,,,,hval; dev fold 0; not submitted
+E17,2026-10-29,Pathumma Fastcon + Typhoon2.1 4B,"zero-shot + LLM new prompt, tok filter",-,-,NeMo default,LLM correction,0.1094,,,,all 240 dev clips
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune + speed perturbation 1.0/0.9/1.1, seed 11, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment + speed,NeMo default,-,0.0911,,0.0333,,P_val_s11; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune + speed perturbation 1.0/0.9/1.1, seed 11, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment + speed,beam 4,-,0.0800,,0.0322,,P_val_s11; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune + speed perturbation 1.0/0.9/1.1, seed 11, epoch 8",train + dev folds 1-4 x3,SpecAugment + speed,NeMo default,-,0.0839,,0.0313,,P_val_s11; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune + speed perturbation 1.0/0.9/1.1, seed 13, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment + speed,NeMo default,-,0.0847,,0.0325,,P_val_s13; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune + speed perturbation 1.0/0.9/1.1, seed 13, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment + speed,beam 4,-,0.0839,,0.0342,,P_val_s13; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune + speed perturbation 1.0/0.9/1.1, seed 13, epoch 8",train + dev folds 1-4 x3,SpecAugment + speed,NeMo default,-,0.0831,,0.0325,,P_val_s13; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune lr 5e-5, seed 11, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment,NeMo default,-,0.0958,,0.0371,,L_val_s11; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune lr 5e-5, seed 11, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment,beam 4,-,0.0934,,0.0367,,L_val_s11; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune lr 5e-5, seed 13, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment,NeMo default,-,0.0950,,0.0367,,L_val_s13; dev fold 0
+E18,2026-10-29,Pathumma Fastcon,"full fine-tune lr 5e-5, seed 13, avg 6-8-10",train + dev folds 1-4 x3,SpecAugment,beam 4,-,0.0911,,0.0360,,L_val_s13; dev fold 0
+E20,2026-10-29,Pathumma Fastcon,"full fine-tune + FLEURS th train, seed 11, epoch 6",train + dev folds 1-4 x3 + FLEURS train,SpecAugment,NeMo default,-,0.0816,,0.0328,,FL_val; dev fold 0
+E20,2026-10-29,Pathumma Fastcon,"full fine-tune + FLEURS th train, seed 11, epoch 8",train + dev folds 1-4 x3 + FLEURS train,SpecAugment,NeMo default,-,0.0823,,0.0343,,FL_val; dev fold 0
+E20,2026-10-29,Pathumma Fastcon,"full fine-tune + FLEURS th train, seed 11, epoch 8",train + dev folds 1-4 x3 + FLEURS train,SpecAugment,beam 4,-,0.0816,,0.0327,,FL_val; dev fold 0
+E20,2026-10-29,Pathumma Fastcon,"full fine-tune + FLEURS th train, seed 11, epoch 10",train + dev folds 1-4 x3 + FLEURS train,SpecAugment,NeMo default,-,0.0855,,0.0331,,FL_val; dev fold 0
+E20,2026-10-29,Pathumma Fastcon,"full fine-tune + FLEURS th train, seed 11, avg 6-8-10",train + dev folds 1-4 x3 + FLEURS train,SpecAugment,NeMo default,-,0.0800,,0.0330,,FL_val; dev fold 0
+E20,2026-10-29,Pathumma Fastcon,"full fine-tune + FLEURS th train, seed 11, avg 6-8-10",train + dev folds 1-4 x3 + FLEURS train,SpecAugment,beam 4,-,0.0816,,0.0330,,FL_val; dev fold 0
+E20,2026-10-29,Pathumma Fastcon,"full fine-tune + FLEURS th train, avg epochs 6-8-10",train + all dev x3 + FLEURS train,SpecAugment,NeMo default,newmm segmentation,,,,0.23,FL_final; Kaggle worse than E15 0.19 (names in Latin letters)
+E21,2026-10-30,Pathumma Fastcon,"full fine-tune + FLEURS th train without Latin-letter sentences, avg epochs 6-8-10",train + all dev x3 + FLEURS (no Latin),SpecAugment,NeMo default,newmm segmentation,,,,0.22,FLN_final; 19 Latin words on test (E15 54); still worse than E15
+E22,2026-10-30,Typhoon Whisper Large V3,"LoRA r32, epoch 5 (B5)",train + dev folds 1-4,SpecAugment p0.05,greedy,newmm segmentation,0.1108,,0.0413,0.20,calibration submission of existing predictions; Pathumma B at same stage 0.24
